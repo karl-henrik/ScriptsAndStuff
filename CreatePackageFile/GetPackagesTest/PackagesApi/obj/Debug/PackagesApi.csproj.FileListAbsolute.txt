@@ -5,3 +5,5 @@ C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPa
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\obj\Debug\PackagesApi.csprojResolveAssemblyReference.cache
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\obj\Debug\PackagesApi.dll
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\obj\Debug\PackagesApi.pdb
+C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\EntityFramework.dll
+C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\EntityFramework.xml

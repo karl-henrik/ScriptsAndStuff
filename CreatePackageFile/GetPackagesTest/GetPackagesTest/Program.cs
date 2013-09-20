@@ -15,24 +15,17 @@ namespace GetPackagesTest
     {
         static void Main(string[] args)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(XMLClasses.feed));
-
-            var mainfeed = new XMLClasses.feed();
+            var ser = new XmlSerializer(typeof(XMLClasses.feed));
 
             var link = "http://chocolatey.org/api/v2/Packages";
-
-
+            
             using (var db = new ProgramContext())
             {
-
-
-
                 while (link != null && link.Length > 15)
                 {
-                    using (XmlReader reader = new XmlTextReader(link))
-                    {
-                        mainfeed = (XMLClasses.feed)ser.Deserialize(reader);
-                    }
+                    XMLClasses.feed mainfeed;
+
+                    mainfeed = ReadFromMainfeed(link, ser);
 
                     foreach (var item in mainfeed.Items.Where(x => x.GetType() == typeof(XMLClasses.feedEntry)))
                     {
@@ -41,37 +34,20 @@ namespace GetPackagesTest
                         if (val != null)
                         {
 
-                            var queryProgram = from p in db.Programs
-                                               where p.ProgramName == val.title.Value
-                                               orderby p.ProgramName
-                                               select p;
+                            var queryProgram = GetStoredProgramPackagesFromDatabase(db, val);
 
-                            var queryProgramVersion = from p in db.ProgramVersions
-                                                      where p.Version == val.properties.Version
-                                                      select p;
+                            var queryProgramVersion = GetStoredProgramPackageVersionsFromDatabase(db, val);
 
                             if (!queryProgram.Any())
                             {
-                                var program = new EF_Program {ProgramName = val.title.Value};
-
-                                if(program.ProgramVersions == null)
-                                    program.ProgramVersions = new List<EF_ProgramVersion>();
-
-                                program.ProgramVersions.Add(new EF_ProgramVersion() {Program = program,Version = val.properties.Version});
-                                
-                                db.Programs.Add(program);
-
+                                AddProgramPackageToDatabase(val, db);
                             }
                             else if (!queryProgramVersion.Any())
                             {
-                                var program = queryProgram.First();
-                                db.ProgramVersions.Add(new EF_ProgramVersion() { Program = program, Version = val.properties.Version });
+                                AddProgramPackageVersionToDatabase(queryProgram, db, val);
                             }
 
-
                             db.SaveChanges();
-                            Console.WriteLine(val.title.Value);
-                            Console.WriteLine(val.properties.Version);
                         }
 
                     }
@@ -82,15 +58,71 @@ namespace GetPackagesTest
                 }
 
             }
-
-
-
-
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// Access the main RSS feed of Chocolatey, and return as XML object
+        /// </summary>
+        /// <param name="link">The address of the RSS feed</param>
+        /// <param name="ser">The XML Serializer</param>
+        /// <returns></returns>
+        private static XMLClasses.feed ReadFromMainfeed(string link, XmlSerializer ser)
+        {
+            XMLClasses.feed mainfeed;
+            using (XmlReader reader = new XmlTextReader(link))
+            {
+                mainfeed = (XMLClasses.feed) ser.Deserialize(reader);
+            }
+            return mainfeed;
+        }
 
 
+        /// <summary>
+        /// Add Program Package Version To the Database via Entityframework. 
+        /// The Program package version is allways linked to a Program package.
+        /// </summary>
+        /// <param name="queryProgram"></param>
+        /// <param name="db"></param>
+        /// <param name="val"></param>
+        private static void AddProgramPackageVersionToDatabase(IOrderedQueryable<EF_Program> queryProgram, ProgramContext db, XMLClasses.feedEntry val)
+        {
+            var program = queryProgram.First();
+            db.ProgramVersions.Add(new EF_ProgramVersion() {Program = program, Version = val.properties.Version});
+        }
 
+        /// <summary>
+        /// Add a program package to the database via Entityframework
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="db"></param>
+        private static void AddProgramPackageToDatabase(XMLClasses.feedEntry val, ProgramContext db)
+        {
+            var program = new EF_Program {ProgramName = val.title.Value};
+
+            if (program.ProgramVersions == null)
+                program.ProgramVersions = new List<EF_ProgramVersion>();
+
+            program.ProgramVersions.Add(new EF_ProgramVersion() {Program = program, Version = val.properties.Version});
+
+            db.Programs.Add(program);
+        }
+
+        private static IQueryable<EF_ProgramVersion> GetStoredProgramPackageVersionsFromDatabase(ProgramContext db, XMLClasses.feedEntry val)
+        {
+            var queryProgramVersion = from p in db.ProgramVersions
+                                      where p.Version == val.properties.Version
+                                      select p;
+            return queryProgramVersion;
+        }
+
+        private static IOrderedQueryable<EF_Program> GetStoredProgramPackagesFromDatabase(ProgramContext db, XMLClasses.feedEntry val)
+        {
+            var queryProgram = from p in db.Programs
+                               where p.ProgramName == val.title.Value
+                               orderby p.ProgramName
+                               select p;
+            return queryProgram;
+        }
     }
 }
