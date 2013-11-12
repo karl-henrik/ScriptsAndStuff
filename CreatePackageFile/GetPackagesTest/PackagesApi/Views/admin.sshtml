@@ -1,0 +1,47 @@
+﻿  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <title>jQuery UI Autocomplete - Default functionality</title>      
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />      
+      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+      <link rel="stylesheet" href="/css/Style.css" />
+      <script type="text/javascript">
+          var g_Value = "";
+
+          $.postJSON = function (url, data, callback) {
+              return jQuery.ajax({
+                  'type': 'POST',
+                  'url': url,
+                  'contentType': 'application/json',
+                  'data': data,
+                  'dataType': 'json',
+                  'success': callback,
+                  'error': function (d) {
+                      alert(d);
+                  }
+              });
+
+          };
+
+
+          $(document).ready(function () {              
+                  
+              $("#update").click(function () {
+                  $.postJSON("/update/", null, function (d) {
+                      alert(d);
+                  });              
+              });
+          });
+      </script>      
+    </head>
+    <body>
+      <br />      
+      <div class="centerBox">        
+        <div class="ui-widget">          
+          <input class="buttonStyle" id="update" type="button" value="Update packagelist" />
+        </div>
+        
+      </div>    
+    </body>
+  </html>

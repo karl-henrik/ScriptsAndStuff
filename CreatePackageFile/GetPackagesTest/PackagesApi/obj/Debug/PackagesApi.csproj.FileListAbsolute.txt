@@ -1,9 +1,9 @@
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\PackagesApi.dll
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\PackagesApi.pdb
+C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\EntityFramework.dll
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\Nancy.dll
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\Nancy.Hosting.Aspnet.dll
+C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\EntityFramework.xml
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\obj\Debug\PackagesApi.csprojResolveAssemblyReference.cache
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\obj\Debug\PackagesApi.dll
 C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\obj\Debug\PackagesApi.pdb
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\EntityFramework.dll
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\PackagesApi\bin\EntityFramework.xml

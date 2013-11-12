@@ -1,27 +1,28 @@
 ﻿  <html lang="en">
     <head>
       <meta charset="utf-8" />
-      <title>jQuery UI Autocomplete - Default functionality</title>
-      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+      <title>jQuery UI Autocomplete - Default functionality</title>      
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />      
       <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
       <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+      <link rel="stylesheet" href="css/Style.css" />
       <script src="scripts/autocomp.js"></script>
     </head>
     <body>
-      <br></br>
-      <div class="ui-widget">
-        <label for="tags">Tags: </label>
-        <input id="tags" />
-        <input id="add" type="button" value="Add (+)"></input>
-        <input id="makeList" type="button" value="MakeList"></input>
-      </div>
-      <input id="Hidden1" type="hidden" value="" />
-      <div>
-        <ul id="packageList">
+      <br></br>      
+      <div class="centerBox">        
+        <div class="ui-widget">
+          <label for="tags">Tags: </label>
+          <input id="tags" />
+          <input class="buttonStyle" id="add" type="button" value="Add (+)"></input>
+          <input class="buttonStyle" id="makeList" type="button" value="MakeList"></input>        
+        </div>
+        <input id="Hidden1" type="hidden" value="" />
+        <div>
+          <ul class="ul-white" id="packageList">
           
-        </ul>
-      </div>
-
-
+          </ul>
+        </div>
+      </div>    
     </body>
   </html>

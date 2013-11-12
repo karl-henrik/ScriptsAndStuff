@@ -6,25 +6,21 @@ using System.Xml.Serialization;
 using GetPackagesTest.Context;
 using GetPackagesTest.Models.EF;
 
-namespace GetPackagesTest
+namespace PackagesApi
 {
-    class Program
+    public class PackageHandler
     {
-        static void Main()
+        public void UpdatePackages()
         {
             var ser = new XmlSerializer(typeof(XMLClasses.feed));
             
             var link = "http://chocolatey.org/api/v2/Packages";
-            
-            Console.WriteLine("Copying chocolatey packages information to database -- In progress");
 
             using (var db = new ProgramContext())
             {
                 while (link != null && link.Length > 15)
                 {
-                    XMLClasses.feed mainfeed;
-
-                    mainfeed = ReadFromMainfeed(link, ser);
+                    XMLClasses.feed mainfeed = ReadFromMainfeed(link, ser);
 
                     foreach (var item in mainfeed.Items.Where(x => x.GetType() == typeof(XMLClasses.feedEntry)))
                     {
@@ -50,8 +46,6 @@ namespace GetPackagesTest
                         }
                         
                     }
-
-                    Console.Write("#");
                     
                     var feedLink = mainfeed.Items.Last(x => x.GetType() == typeof(XMLClasses.feedLink)) as XMLClasses.feedLink;
 
@@ -59,9 +53,14 @@ namespace GetPackagesTest
                 }
 
             }
-            Console.WriteLine();
-            Console.WriteLine("Copying chocolatey packages information to database -- Done");
-            Console.ReadLine();
+        }
+
+        public void ClearPackages()
+        {
+            using (var db = new ProgramContext())
+            {
+                db.Database.Delete();
+            }
         }
 
         /// <summary>
@@ -128,4 +127,5 @@ namespace GetPackagesTest
             return queryProgram;
         }
     }
+    
 }

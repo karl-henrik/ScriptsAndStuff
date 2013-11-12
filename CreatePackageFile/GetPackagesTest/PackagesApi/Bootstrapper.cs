@@ -17,6 +17,12 @@ namespace PackagesApi
             conventions.StaticContentsConventions.Add(
                 StaticContentConventionBuilder.AddDirectory("scripts")
             );
+            conventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("css")
+            );
+            conventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("content")
+            );
         }
     }
 }

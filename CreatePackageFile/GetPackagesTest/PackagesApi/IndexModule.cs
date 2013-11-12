@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
+using System.Web;
+using Nancy.Json;
 using Nancy.ModelBinding;
-
 namespace PackagesApi
 {
     using Nancy;
@@ -15,18 +15,46 @@ namespace PackagesApi
                     return DataHandler.GetProgramListAsJSON();
                 };
 
+            Get["/admin"] = parameter => View["admin.sshtml"];
+
             Get["/"] = parameters => View["index.sshtml"];
+
+            Post["/update"] = parameters =>
+                {
+                    var pack = new PackageHandler();
+
+                    pack.ClearPackages();
+                    pack.UpdatePackages();
+
+                    return "success";
+                };
+            
 
             Post["/list"] = parameters =>
                 {
                     var model = this.Bind<Rootobject>();
-                    var test = DataHandler.CreatePackageFileFromJSON(model);
+                    var scriptFilePath = DataHandler.CreateTempScriptFile(model);
+                    var serializer = new JavaScriptSerializer();
+                    return serializer.Serialize(scriptFilePath);
+                };
 
-                    return "Grinch";
+            Get["/scriptfile/{scriptFile}"] = parameters =>
+                {
+                    var response = new Response();
+                    
+                    var path = HttpRuntime.AppDomainAppPath + @"temp\" + parameters.scriptFile;
+                    
+                    var buffer = DataHandler.CopyFileToBuffer(path);
+
+                    response.Headers.Add("Content-Disposition", "attachment; filename=" + parameters.scriptFile);
+
+                    DataHandler.CreateResponse(response, buffer);
+                    
+                    File.Delete(path);
+
+                    return response;
 
                 };
         }
     }
-
-    
 }

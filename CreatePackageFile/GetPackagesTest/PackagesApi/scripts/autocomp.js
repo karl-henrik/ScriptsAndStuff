@@ -7,25 +7,32 @@ $.postJSON = function (url, data, callback) {
         'contentType': 'application/json',
         'data': data,
         'dataType': 'json',
-        'success': callback
+        'success': callback,
+        'error': function (d) {
+            alert(d);
+        }
     });
 
 };
+
+
 $(document).ready(function () {
     var obj = {};
     obj.PackagesArray = {};
-    $("#makeList").click(function () {
-        obj.PackagesArray = $('#packageList li').map(function (i, el) {
+   
+    $("#makeList").click(function() {
+        obj.PackagesArray = $('#packageList li').map(function(i, el) {
             var item = { package: $(el).text() };
             return item;
         });
         var list = {};
         list = { "packages": obj.PackagesArray.toArray() };
-        var x = $.postJSON("list/", JSON.stringify(list));
+        $.postJSON("list/", JSON.stringify(list), function (d) {
+                window.location = "/scriptFile/" + d;
+        });
     });
-
     $("#add").click(function () {
-        $("#packageList").append('<li>' + g_Value + '<input type=\"button\" value=\"[X]\" onclick=\"$(this).parent().remove();\"/></li>');
+        $("#packageList").append('<li>' + g_Value + '<button class="buttonStyle menuButton" type="button" onclick="$(this).parent().remove();"><img class="btnImg" src="Content/Remove.png"/></button></li>');
     });
 });
 
