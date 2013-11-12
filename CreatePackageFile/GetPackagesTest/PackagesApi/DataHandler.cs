@@ -32,6 +32,13 @@ namespace PackagesApi
             return null;
         }
 
+
+        /// <summary>
+        /// Creates a local temporary file so that we can send it to the user
+        /// TODO create something that will work better with Azure.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public static object CreateTempScriptFile(Rootobject model)
         {
             var path = "ChockIS" + DateTime.Now.Ticks + ".ps1";

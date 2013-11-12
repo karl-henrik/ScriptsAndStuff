@@ -10,10 +10,7 @@ namespace PackagesApi
     {
         public IndexModule()
         {
-            Get["/test"] = parameters =>
-                {
-                    return DataHandler.GetProgramListAsJSON();
-                };
+            Get["/test"] = parameters => DataHandler.GetProgramListAsJSON();
 
             Get["/admin"] = parameter => View["admin.sshtml"];
 
