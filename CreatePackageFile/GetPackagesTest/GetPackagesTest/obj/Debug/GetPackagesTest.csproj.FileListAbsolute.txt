@@ -1,9 +1,0 @@
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\bin\Debug\GetPackagesTest.exe.config
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\bin\Debug\GetPackagesTest.exe
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\bin\Debug\GetPackagesTest.pdb
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\bin\Debug\EntityFramework.dll
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\bin\Debug\Nancy.dll
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\bin\Debug\EntityFramework.xml
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\obj\Debug\GetPackagesTest.csprojResolveAssemblyReference.cache
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\obj\Debug\GetPackagesTest.exe
-C:\Users\karnilss.SESOG\Documents\GitHub\ScriptsAndStuff\CreatePackageFile\GetPackagesTest\GetPackagesTest\obj\Debug\GetPackagesTest.pdb
